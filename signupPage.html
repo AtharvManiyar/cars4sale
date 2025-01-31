@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars4Sale Sign-Up</title>
+    <link rel="icon" type="image/x-icon" href="https://dynamic.brandcrowd.com/asset/logodraft/brand-page/e9fffd39-17cb-4b98-9f80-9cd3d50b06d6?v=638381772761800000&dimensionsType=preview_image_solid_with_buffer&outputFormat=png">
+    <style>
+        /* Body styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://t4.ftcdn.net/jpg/06/92/61/21/360_F_692612180_XAUFLe7Mw3Vvef8H33QudG16RWh9H0d1.jpg'); /* Replace with your own image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Form Styling */
+        .signup-form {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .signup-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .signup-form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .signup-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .signup-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .signup-form .error {
+            color: red;
+            font-size: 12px;
+        }
+
+        .signup-form p {
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .signup-form p a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <form name="signupForm" class="signup-form" onsubmit="return validateForm()">
+        <h2>Sign Up for Car Resale</h2>
+
+        <!-- Name -->
+        <input type="text" name="name" placeholder="Full Name" id="name" required>
+        <div class="error" id="nameError"></div>
+
+        <!-- Email -->
+        <input type="email" name="email" placeholder="Email Address" id="email" required>
+        <div class="error" id="emailError"></div>
+
+        <!-- Password -->
+        <input type="password" name="password" placeholder="Password" id="password" required>
+        <div class="error" id="passwordError"></div>
+
+        <!-- Confirm Password -->
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" id="confirmPassword" required>
+        <div class="error" id="confirmPasswordError"></div>
+
+        <!-- Contact Number -->
+        <input type="text" name="phone" placeholder="Phone Number" id="phone" required>
+        <div class="error" id="phoneError"></div>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Sign Up">
+
+        <!-- Existing User Link -->
+        <p>Already have an account? <a href="loginPage.html">Login Here</a></p>
+    </form>
+
+    <script>
+        // JavaScript validation for the form
+        function validateForm() {
+            let valid = true;
+
+            // Clear previous error messages
+            document.getElementById('nameError').innerText = '';
+            document.getElementById('emailError').innerText = '';
+            document.getElementById('passwordError').innerText = '';
+            document.getElementById('confirmPasswordError').innerText = '';
+            document.getElementById('phoneError').innerText = '';
+
+            // Validate name
+            let name = document.signupForm.name.value;
+            if (name.trim() === '') {
+                document.getElementById('nameError').innerText = 'Name is required.';
+                valid = false;
+            }
+
+            // Validate email
+            let email = document.signupForm.email.value;
+            let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').innerText = 'Please enter a valid email address.';
+                valid = false;
+            }
+
+            // Validate password
+            let password = document.signupForm.password.value;
+            if (password.length < 8) {
+                document.getElementById('passwordError').innerText = 'Password must be at least 8 characters.';
+                valid = false;
+            }
+
+            // Validate confirm password
+            let confirmPassword = document.signupForm.confirmPassword.value;
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').innerText = 'Passwords do not match.';
+                valid = false;
+            }
+
+            // Validate phone number
+            let phone = document.signupForm.phone.value;
+            let phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone)) {
+                document.getElementById('phoneError').innerText = 'Phone number must be 10 digits.';
+                valid = false;
+            }
+
+            return valid; // If any validation fails, return false
+        }
+    </script>
+
+</body>
+</html>
