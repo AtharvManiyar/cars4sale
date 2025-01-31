@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars4Sale Login</title>
+    <link rel="icon" type="image/x-icon" href="https://dynamic.brandcrowd.com/asset/logodraft/brand-page/e9fffd39-17cb-4b98-9f80-9cd3d50b06d6?v=638381772761800000&dimensionsType=preview_image_solid_with_buffer&outputFormat=png">
+    <style>
+        /* Set the background image for the entire page */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('https://t3.ftcdn.net/jpg/09/26/26/04/360_F_926260487_DnabYNmsdqbY7kttU2hKJ4TSMUC8CJFS.jpg');
+            background-size: cover; /* Make sure the background image covers the whole page */
+            background-position: center; /* Center the background image */
+            background-attachment: fixed; /* Keep the background fixed while scrolling */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Style the form */
+        form {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 300px;
+            width: 100%;
+            text-align: center;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        function namevalidation() {
+            var n = document.f1.uname.value;
+            var n1 = /^[A-Za-z][A-Za-z0-9]*$/; // Username should start with a letter and can contain letters/numbers
+
+            if (n == "") {
+                alert("Please Enter Your Username");
+                document.f1.uname.focus();
+                return false;
+            }
+
+            if (!n1.test(n)) {
+                alert("Invalid Username: It should start with a letter and can only contain letters and numbers.");
+                document.f1.uname.focus();
+                return false;
+            }
+            return true; // Return true if validation passes
+        }
+
+        function passwordvalidation() {
+            var pw = document.f1.pwd.value;
+            var p1 = /[A-Z]/; // At least one uppercase letter
+            var p2 = /[a-z]/; // At least one lowercase letter
+            var p3 = /[0-9]/; // At least one digit
+
+            if (pw == "") {
+                alert("Please Enter Your Password");
+                document.f1.pwd.focus();
+                return false;
+            }
+
+            if (pw.length < 8) {
+                alert("Password should be at least 8 characters long, with one uppercase, one lowercase, and one digit.");
+                document.f1.pwd.focus();
+                return false;
+            }
+
+            if (!p1.test(pw) || !p2.test(pw) || !p3.test(pw)) {
+                alert("Password should contain one uppercase letter, one lowercase letter, and one digit.");
+                document.f1.pwd.focus();
+                return false;
+            }
+            return true; // Return true if validation passes
+        }
+
+        function contactvalidation() {
+            var c1 = document.f1.cno1.value;
+            var p = /^\d{10}$/; // Regular expression for a 10-digit phone number
+
+            if (c1 == "") {
+                alert("Please Enter Contact Number");
+                document.f1.cno1.focus();
+                return false;
+            }
+
+            if (!p.test(c1)) {
+                alert("Invalid Contact Number: It should be a 10-digit number.");
+                document.f1.cno1.focus();
+                return false;
+            }
+            return true; // Return true if validation passes
+        }
+
+        function validateForm() {
+            // Call each validation function and return false if any of them fail
+            if (!namevalidation() || !passwordvalidation() || !contactvalidation()) {
+                return false;
+            }
+            return true; // If all validations pass, submit the form
+        }
+    </script>
+
+    <form name="f1" action="validation.html" method="post" onsubmit="return validateForm()">
+        <label for="uname">Username :</label>
+        <input type="text" name="uname" id="uname"><br><br>
+
+        <label for="pwd">Password :</label>
+        <input type="password" name="pwd" id="pwd"><br><br>
+
+        <label for="cno1">Contact No :</label>
+        <input type="text" name="cno1" id="cno1"><br><br>
+
+        <input type="submit" value="LOGIN">
+    </form>
+
+</body>
+</html>
